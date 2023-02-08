@@ -1,0 +1,88 @@
+<h2 mat-dialog-title>Add Product</h2>
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="productForm">
+    <mat-grid-list cols="3" rowHeight="100px" gutterSize="12px">
+      <mat-grid-tile
+        ><mat-form-field class="full-width">
+          <mat-label>Name</mat-label>
+          <input
+            type="text"
+            matInput="name"
+            placeholder="Product Name"
+            formControlName="name"
+          />
+          <mat-error *ngIf="checkError('name')">
+            You must enter a name for the product
+          </mat-error>
+        </mat-form-field></mat-grid-tile
+      >
+      <mat-grid-tile
+        ><mat-form-field class="full-width">
+          <mat-label>Code</mat-label>
+          <input
+            type="text"
+            matInput="code"
+            placeholder="Product Code"
+            formControlName="code"
+          />
+          <mat-error *ngIf="checkError('code')">
+            You must enter a code for the product
+          </mat-error>
+        </mat-form-field></mat-grid-tile
+      >
+      <mat-grid-tile>
+        <mat-form-field class="full-width">
+          <mat-label>Price</mat-label>
+          <input
+            type="text"
+            matInput="price"
+            placeholder="Product Price"
+            formControlName="price"
+          />
+          <mat-error *ngIf="checkError('price')">
+            You must enter a price for the product
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field class="full-width">
+          <mat-label>Build Price</mat-label>
+          <input
+            type="text"
+            matInput="build_price"
+            placeholder="Product Build Price"
+            formControlName="build_price"
+          />
+          <mat-error *ngIf="checkError('build_price')">
+            You must enter a build price for the product
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile colspan="2">
+        <mat-form-field class="full-width">
+          <mat-label>Description</mat-label>
+          <input
+            type="text"
+            matInput="description"
+            placeholder="Product Description"
+            formControlName="description"
+          />
+          <mat-error *ngIf="checkError('description')">
+            You must enter a description for the product
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close color="warn">Cancel</button>
+  <button
+    mat-raised-button
+    color="primary"
+    cdkFocusInitial
+    (click)="submitHandler()"
+  >
+    Submit
+  </button>
+</mat-dialog-actions>

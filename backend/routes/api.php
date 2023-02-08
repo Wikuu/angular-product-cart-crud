@@ -1,19 +1,30 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
+// ** Controller Imports
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\ProductController;
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+
+Route::prefix("product")->group(function() {
+    Route::get("/", [ProductController::class, "index"]);
+
+    Route::post("/", [ProductController::class, "store"]);
+    Route::put("/{id}", [ProductController::class, "update"])->whereNumber("id");
+
+    Route::delete("/{id}", [ProductController::class, "remove"])->whereNumber("id");
+});
+
+Route::prefix("cart")->group(function() {
+    Route::get("/", [CartController::class, "index"]);
+
+    Route::post("/", [CartController::class, "store"]);
+
+    Route::put("/change-quantity", [CartController::class, "changeQuantity"]);
+    Route::put("/change-side", [CartController::class, "changeSide"]);
+    Route::put("/toggle-build-price", [CartController::class, "toggleBuildPrice"]);
+    Route::put("/toggle-all-build-price", [CartController::class, "toggleAllBuildPrices"]);
+
+    Route::delete("/{id}", [CartController::class, "remove"])->whereNumber("id");
 });
